@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->string('userName')->unique();
             $table->string('password');
             $table->enum('userType', ['MEMBER', 'ADMIN']);
-            // Admin, Yönetici, Muhasebe, Satış, Montaj, İmalat, Kargo
+            // Admin, Yönetici, Muhasebe, Satış, İmalat, Montaj, Kargo
             $table->enum('unit', ['ADMIN', 'MANAGER', 'ACCOUNTING', 'SALES', 'MANUFACTURING', 'ASSEMBLY', 'CARGO']);
             $table->enum('status', ['ACTIVE', 'PASSIVE'])->default('ACTIVE');
             $table->timestamp('email_verified_at')->nullable();

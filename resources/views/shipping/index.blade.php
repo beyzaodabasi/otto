@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2 align-items-center">
                 <div class="col-sm-6">
-                    <h3 class="m-0">Kargo Depo</h3>
+                    <h3 class="m-0">Sevk Depo</h3>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6">

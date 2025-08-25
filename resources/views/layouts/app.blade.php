@@ -134,7 +134,7 @@
                                 </a>
                             </li>
                         @endif
-                        @if (Auth::user()->userType == 'ADMIN' || Auth::user()->unit == 'MANAGER' || Auth::user()->unit == 'MANUFACTURING' || Auth::user()->unit == 'ASSEMBLY')
+                        @if (Auth::user()->userType == 'ADMIN' || Auth::user()->unit == 'MANAGER' || Auth::user()->unit == 'MANUFACTURING')
                             <li class="nav-item">
                                 <a href="{{ route(name: 'manufacturing') }}"
                                     class="nav-link {{ Route::currentRouteName() == 'manufacturing' ? 'active' : '' }}">
@@ -143,7 +143,7 @@
                                 </a>
                             </li>
                         @endif
-                        @if (Auth::user()->userType == 'ADMIN' || Auth::user()->unit == 'MANAGER' || Auth::user()->unit == 'ASSEMBLY' || Auth::user()->unit == 'MANUFACTURING')
+                        @if (Auth::user()->userType == 'ADMIN' || Auth::user()->unit == 'MANAGER' || Auth::user()->unit == 'ASSEMBLY')
                             <li class="nav-item">
                                 <a href="{{ route(name: 'assembly') }}"
                                     class="nav-link {{ Route::currentRouteName() == 'assembly' ? 'active' : '' }}">
@@ -166,7 +166,7 @@
                                 <a href="{{ route(name: 'shipping') }}"
                                     class="nav-link {{ Route::currentRouteName() == 'shipping' ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-truck-loading"></i>
-                                    <p>Kargo Depo</p>
+                                    <p>Sevk Depo</p>
                                 </a>
                             </li>
                         @endif
@@ -221,7 +221,7 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; {!! date('Y') !!} <a href="https://otto.com.tr">Otto</a>.</strong>
+            <strong>Copyright &copy; {!! date('Y') !!} <a href="https://www.ottoteknik.com.tr">Otto</a>.</strong>
             Tüm hakları saklıdır.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 1.1.1

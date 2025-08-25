@@ -17,7 +17,7 @@ class AssemblyController extends Controller
 {
     public function index(Request $request)
     {
-        if (Auth::user()->userType != 'ADMIN' && Auth::user()->unit != 'MANAGER' && Auth::user()->unit != 'ASSEMBLY' && Auth::user()->unit != 'MANUFACTURING') {
+        if (Auth::user()->userType != 'ADMIN' && Auth::user()->unit != 'MANAGER' && Auth::user()->unit != 'ASSEMBLY') {
             return redirect()->route('home');
         }
         return view('assembly.index');
@@ -25,11 +25,12 @@ class AssemblyController extends Controller
 
     public function getAssemblyData(Request $request)
     {
-        if (Auth::user()->userType != 'ADMIN' && Auth::user()->unit != 'MANAGER' && Auth::user()->unit != 'ASSEMBLY' && Auth::user()->unit != 'MANUFACTURING') {
+        if (Auth::user()->userType != 'ADMIN' && Auth::user()->unit != 'MANAGER' && Auth::user()->unit != 'ASSEMBLY') {
             return redirect()->route('home');
         }
         if ($request->ajax()) {
             $assembly = Order::whereHas('assemblyOrderProducts')
+                ->where('status', 'ACTIVE')
                 ->select(['id', 'created_at', 'orderNumber', 'customerCode', 'productDetails', 'productDescription', 'orderDate', 'dueDate', 'personnelCode', 'personnelName', 'companyName', 'description', 'orderStatus', 'shippingDate', 'note', 'status'])
                 ->get();
         }

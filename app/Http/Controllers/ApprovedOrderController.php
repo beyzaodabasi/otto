@@ -30,6 +30,7 @@ class ApprovedOrderController extends Controller
         }
         if ($request->ajax()) {
             $approvedOrders = Order::whereHas('orderProducts')
+                ->where('status', 'ACTIVE')
                 ->select(['id', 'created_at', 'orderNumber', 'customerCode', 'productDetails', 'productDescription', 'orderDate', 'dueDate', 'personnelCode', 'personnelName', 'companyName', 'description', 'orderStatus', 'shippingDate', 'note', 'status'])
                 ->get();
         }

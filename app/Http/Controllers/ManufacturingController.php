@@ -17,7 +17,7 @@ class ManufacturingController extends Controller
 {
     public function index(Request $request)
     {
-        if (Auth::user()->userType != 'ADMIN' && Auth::user()->unit != 'MANAGER' && Auth::user()->unit != 'MANUFACTURING' && Auth::user()->unit != 'ASSEMBLY') {
+        if (Auth::user()->userType != 'ADMIN' && Auth::user()->unit != 'MANAGER' && Auth::user()->unit != 'MANUFACTURING') {
             return redirect()->route('home');
         }
         return view('manufacturing.index');
@@ -25,11 +25,12 @@ class ManufacturingController extends Controller
 
     public function getManufacturingData(Request $request)
     {
-        if (Auth::user()->userType != 'ADMIN' && Auth::user()->unit != 'MANAGER' && Auth::user()->unit != 'MANUFACTURING' && Auth::user()->unit != 'ASSEMBLY') {
+        if (Auth::user()->userType != 'ADMIN' && Auth::user()->unit != 'MANAGER' && Auth::user()->unit != 'MANUFACTURING') {
             return redirect()->route('home');
         }
         if ($request->ajax()) {
             $manufacturing = Order::whereHas('manufacturingOrderProducts')
+                ->where('status', 'ACTIVE')
                 ->select(['id', 'created_at', 'orderNumber', 'customerCode', 'productDetails', 'productDescription', 'orderDate', 'dueDate', 'personnelCode', 'personnelName', 'companyName', 'description', 'orderStatus', 'shippingDate', 'note', 'status'])
                 ->get();
         }

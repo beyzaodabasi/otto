@@ -30,6 +30,7 @@ class ShippingController extends Controller
         }
         if ($request->ajax()) {
             $shipping = Order::whereHas('shippingOrderProducts')
+                ->where('status', 'ACTIVE')
                 ->select(['id', 'created_at', 'orderNumber', 'customerCode', 'productDetails', 'productDescription', 'orderDate', 'dueDate', 'personnelCode', 'personnelName', 'companyName', 'description', 'orderStatus', 'shippingDate', 'note', 'status'])
                 ->get();
         }

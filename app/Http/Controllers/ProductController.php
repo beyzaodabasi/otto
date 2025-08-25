@@ -43,7 +43,10 @@ class ProductController extends Controller
                 ->addColumn('actions', function ($product) {
                     return '<a href="' . route('getProduct', ['id' => $product->id]) . '" class="btn btn-primary btn-sm">Detay</a>';
                 })
-                ->rawColumns(['actions'])
+                ->addColumn('delete', function ($product) {
+                    return '<button class="btn btn-danger btn-sm" onclick="deleteProduct(\'' . $product->id . '\')">Sil</button>';
+                })
+                ->rawColumns(['actions', 'delete'])
                 ->make(true);
         }
     }
@@ -144,6 +147,15 @@ class ProductController extends Controller
             // Hata oluşursa geri dön ve hata mesajı göster
             return back()->with('error', 'Ürünler yüklenirken bir hata oluştu: ' . $e->getMessage());
         }
+    }
+
+    public function deleteProduct(Request $request, $id)
+    {
+        if (Auth::user()->userType != 'ADMIN') {
+            return redirect()->route('products')->with('error', 'Bu işlemi yapmaya yetkiniz yok.');
+        }
+        Product::destroy($id);
+        return redirect()->route('products')->with('message', 'Ürün başarıyla silindi.');
     }
 
 
