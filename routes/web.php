@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller(OrderController::class)->group(function () {
         Route::get('/orders', 'index')->name('orders');
         Route::get('/orders/data', 'getOrdersData')->name('orders.data');
+        Route::get('/orders/filteredData', 'getFilteredOrdersData')->name('orders.filteredData');
         Route::get('/orders/newOrder', 'newOrder')->name('newOrder');
         Route::post('/orders/createOrder', 'createOrder')->name('createOrder');
         Route::get('/orders/getOrder/{id}', 'getOrder')->name('getOrder');

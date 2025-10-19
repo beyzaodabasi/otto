@@ -62,6 +62,9 @@ class AssemblyController extends Controller
                 }
                 return $total;
             })
+            ->editColumn('assemblyProductsCount', function ($assembly) {
+                return $assembly->assemblyOrderProducts->sum('pivot.quantity');
+            })
             ->editColumn('status', function ($assembly) {
                 return $assembly->status == 'ACTIVE' ? 'Aktif' : 'Pasif';
             })

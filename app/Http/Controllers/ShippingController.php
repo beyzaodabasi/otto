@@ -62,6 +62,9 @@ class ShippingController extends Controller
                 }
                 return $total;
             })
+            ->editColumn('shippingProductsCount', function ($shipping) {
+                return $shipping->shippingOrderProducts->sum('pivot.quantity');
+            })
             ->editColumn('status', function ($shipping) {
                 return $shipping->status == 'ACTIVE' ? 'Aktif' : 'Pasif';
             })

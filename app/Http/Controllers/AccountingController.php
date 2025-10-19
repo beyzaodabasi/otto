@@ -61,6 +61,9 @@ class AccountingController extends Controller
                 }
                 return $total;
             })
+            ->editColumn('accountingProductsCount', function ($accounting) {
+                return $accounting->accountingOrderProducts->sum('pivot.quantity');
+            })
             ->editColumn('status', function ($accounting) {
                 return $accounting->status == 'ACTIVE' ? 'Aktif' : 'Pasif';
             })

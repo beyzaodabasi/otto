@@ -47,7 +47,8 @@ class OrderController extends Controller
     public function getOrdersData(Request $request)
     {
         if ($request->ajax()) {
-            $orders = Order::select(['id', 'created_at', 'orderNumber', 'customerCode', 'productDetails', 'productDescription', 'orderDate', 'dueDate', 'personnelCode', 'personnelName', 'companyName', 'description', 'orderStatus', 'shippingDate', 'note', 'status']);
+            $orders = Order::select(['id', 'created_at', 'orderNumber', 'customerCode', 'productDetails', 'productDescription', 'orderDate', 'dueDate', 'personnelCode', 'personnelName', 'companyName', 'description', 'orderStatus', 'shippingDate', 'note', 'status'])
+                ->whereNotIn('orderStatus', ['CANCELLED', 'COMPLETED']); // İPTAL EDİLDİ ve TAMAMLANDI hariç
         }
 
         return DataTables::of($orders)
@@ -87,6 +88,67 @@ class OrderController extends Controller
             ->make(true);
     }
 
+    // Filtrelenmiş data (filterOrderStatus, filterDateFrom ve filterDateTo gelebilir)
+    public function getFilteredOrdersData(Request $request)
+    {
+        if (! $request->ajax()) {
+            abort(400);
+        }
+
+        $query = Order::select([
+            'id',
+            'created_at',
+            'orderNumber',
+            'customerCode',
+            'productDetails',
+            'productDescription',
+            'orderDate',
+            'dueDate',
+            'personnelCode',
+            'personnelName',
+            'companyName',
+            'description',
+            'orderStatus',
+            'shippingDate',
+            'note',
+            'status'
+        ]);
+
+        // Eğer frontend filtre gönderdiyse kullan (dizi olarak gelir)
+        if ($request->has('filterOrderStatus') && !empty($request->filterOrderStatus)) {
+            // filterOrderStatus array ise direkt whereIn, değilse comma string ise explode et
+            $statuses = $request->filterOrderStatus;
+            if (!is_array($statuses)) {
+                $statuses = explode(',', $statuses);
+            }
+            $query->whereIn('orderStatus', $statuses);
+        }
+
+        // Tarih filtreleri
+        if ($request->filled('filterDateFrom')) {
+            $query->whereDate('orderDate', '>=', $request->filterDateFrom);
+        }
+        if ($request->filled('filterDateTo')) {
+            $query->whereDate('orderDate', '<=', $request->filterDateTo);
+        }
+
+        return DataTables::of($query)
+            ->editColumn('created_at', fn($order) => $order->created_at->format('Y-m-d H:i'))
+
+            ->editColumn('productDetails', function ($order) {
+                $total = 0;
+                foreach (json_decode($order->productDetails) as $product) {
+                    $total += $product->quantity;
+                }
+                return $total;
+            })
+            ->editColumn('status', fn($order) => $order->status == 'ACTIVE' ? 'Aktif' : 'Pasif')
+            ->addColumn('actions', fn($order) => '<a href="' . route('getOrder', ['id' => $order->id]) . '" class="btn btn-primary btn-sm">Detay</a>')
+            ->rawColumns(['actions'])
+            ->make(true);
+    }
+
+
     public function getOrder(Request $request)
     {
         // $order = Order::with('products')->find($request->id);
@@ -106,7 +168,6 @@ class OrderController extends Controller
             }
         ])->find($request->id);
         return view('order.updateOrder', compact('order'));
-
     }
 
     public function updateOrder(Request $request, $id)

@@ -62,6 +62,9 @@ class ManufacturingController extends Controller
                 }
                 return $total;
             })
+            ->editColumn('manufacturingProductsCount', function ($manufacturing) {
+                return $manufacturing->manufacturingOrderProducts->sum('pivot.quantity');
+            })
             ->editColumn('status', function ($manufacturing) {
                 return $manufacturing->status == 'ACTIVE' ? 'Aktif' : 'Pasif';
             })

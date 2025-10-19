@@ -108,87 +108,87 @@
                         <li class="nav-header">SİPARİŞ İŞLEMLERİ</li>
                         <!-- Ürünler -->
                         @if (Auth::user()->userType == 'ADMIN' || Auth::user()->unit == 'MANAGER' || Auth::user()->unit == 'SALES')
-                            <li class="nav-item">
-                                <a href="{{ route(name: 'products') }}"
-                                    class="nav-link {{ Route::currentRouteName() == 'products' ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-box"></i>
-                                    <p>Ürünler</p>
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a href="{{ route(name: 'products') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'products' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Ürünler</p>
+                            </a>
+                        </li>
                         @endif
                         @if (Auth::user()->userType == 'ADMIN' || Auth::user()->unit == 'MANAGER' || Auth::user()->unit == 'SALES')
-                            <li class="nav-item">
-                                <a href="{{ route(name: 'orders') }}"
-                                    class="nav-link {{ Route::currentRouteName() == 'orders' ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-shopping-basket"></i>
-                                    <p>Tüm Siparişler</p>
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a href="{{ route(name: 'orders') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'orders' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-shopping-basket"></i>
+                                <p>Tüm Siparişler</p>
+                            </a>
+                        </li>
                         @endif
                         @if (Auth::user()->userType == 'ADMIN' || Auth::user()->unit == 'MANAGER' || Auth::user()->unit == 'SALES')
-                            <li class="nav-item">
-                                <a href="{{ route(name: 'approvedOrders') }}"
-                                    class="nav-link {{ Route::currentRouteName() == 'approvedOrders' ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-shopping-basket"></i>
-                                    <p>Onaylı Siparişler</p>
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a href="{{ route(name: 'approvedOrders') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'approvedOrders' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-shopping-basket"></i>
+                                <p>Onaylı Siparişler</p>
+                            </a>
+                        </li>
                         @endif
                         @if (Auth::user()->userType == 'ADMIN' || Auth::user()->unit == 'MANAGER' || Auth::user()->unit == 'MANUFACTURING')
-                            <li class="nav-item">
-                                <a href="{{ route(name: 'manufacturing') }}"
-                                    class="nav-link {{ Route::currentRouteName() == 'manufacturing' ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-industry"></i>
-                                    <p>İmalat Hattı</p>
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a href="{{ route(name: 'manufacturing') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'manufacturing' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-industry"></i>
+                                <p>İmalat Hattı</p>
+                            </a>
+                        </li>
                         @endif
                         @if (Auth::user()->userType == 'ADMIN' || Auth::user()->unit == 'MANAGER' || Auth::user()->unit == 'ASSEMBLY')
-                            <li class="nav-item">
-                                <a href="{{ route(name: 'assembly') }}"
-                                    class="nav-link {{ Route::currentRouteName() == 'assembly' ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-wrench"></i>
-                                    <p>Montaj Hattı</p>
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a href="{{ route(name: 'assembly') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'assembly' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-wrench"></i>
+                                <p>Montaj Hattı</p>
+                            </a>
+                        </li>
                         @endif
                         @if (Auth::user()->userType == 'ADMIN' || Auth::user()->unit == 'MANAGER' || Auth::user()->unit == 'ACCOUNTING')
-                            <li class="nav-item">
-                                <a href="{{ route(name: 'accounting') }}"
-                                    class="nav-link {{ Route::currentRouteName() == 'accounting' ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-file-alt"></i>
-                                    <p>Muhasebe Birimi</p>
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a href="{{ route(name: 'accounting') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'accounting' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-file-alt"></i>
+                                <p>Muhasebe Birimi</p>
+                            </a>
+                        </li>
                         @endif
                         @if (Auth::user()->userType == 'ADMIN' || Auth::user()->unit == 'MANAGER' || Auth::user()->unit == 'CARGO')
-                            <li class="nav-item">
-                                <a href="{{ route(name: 'shipping') }}"
-                                    class="nav-link {{ Route::currentRouteName() == 'shipping' ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-truck-loading"></i>
-                                    <p>Sevk Depo</p>
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a href="{{ route(name: 'shipping') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'shipping' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-truck-loading"></i>
+                                <p>Sevk Depo</p>
+                            </a>
+                        </li>
                         @endif
                         @if (Auth::user()->userType == 'ADMIN' || Auth::user()->unit == 'MANAGER')
-                            <li class="nav-header">PERSONEL İŞLEMLERİ</li>
-                            <li class="nav-item">
-                                <a href="{{ route(name: 'employees') }}"
-                                    class="nav-link {{ Route::currentRouteName() == 'employees' ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-users"></i>
-                                    <p>Personel Listesi</p>
-                                </a>
-                            </li>
+                        <li class="nav-header">PERSONEL İŞLEMLERİ</li>
+                        <li class="nav-item">
+                            <a href="{{ route(name: 'employees') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'employees' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Personel Listesi</p>
+                            </a>
+                        </li>
                         @endif
                         <!-- Admin işlemleri -->
                         @if (Auth::user()->userType == 'ADMIN')
-                            <li class="nav-item">
-                                <a href="{{ route('management') }}"
-                                    class="nav-link {{ Route::currentRouteName() == 'management' ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-cogs"></i>
-                                    <p>Yönetim</p>
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a href="{{ route('management') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'management' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-cogs"></i>
+                                <p>Yönetim</p>
+                            </a>
+                        </li>
                         @endif
                         <!-- Çıkış -->
                         <li class="nav-item">
@@ -221,7 +221,7 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; {!! date('Y') !!} <a href="https://www.ottoteknik.com.tr">Otto</a>.</strong>
+            <strong>Copyright &copy; {!! date('Y') !!} <a href="https://www.ottoteknik.com.tr">Otto Teknik</a>.</strong>
             Tüm hakları saklıdır.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 1.1.1
@@ -237,35 +237,36 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="{{ asset('/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="{{ asset('/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
-    <script src="{{ asset('/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- ChartJS -->
-    <script src="{{ asset('/plugins/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
     <!-- Sparkline -->
-    <script src="{{ asset('/plugins/sparklines/sparkline.js') }}"></script>
+    <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
     <!-- JQVMap -->
-    <script src="{{ asset('/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+    <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+    <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
     <!-- jQuery Knob Chart -->
-    <script src="{{ asset('/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
     <!-- daterangepicker -->
-    <script src="{{ asset('/plugins/moment/moment.min.js') }}"></script>
-    <script src="{{ asset('/plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
     <!-- Tempusdominus Bootstrap 4 -->
-    <script src="{{ asset('/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
     <!-- Summernote -->
-    <script src="{{ asset('/plugins/summernote/summernote-bs4.min.js') }}"></script>
+    <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
     <!-- overlayScrollbars -->
-    <script src="{{ asset('/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+    <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <!-- AdminLTE App -->
-    <script src="{{ asset('/public/js/adminlte.js') }}"></script>
+    <script src="{{ asset('js/adminlte.js') }}"></script>
+    <script src="{{ asset('js/adminlte.min.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
 
     @yield('customjs')

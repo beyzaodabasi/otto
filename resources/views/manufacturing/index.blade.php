@@ -36,6 +36,7 @@
                                     <th class="text-center">Personel Adı Soyadı</th>
                                     <th class="text-center">Talep Eden Firma</th>
                                     <th class="text-center">Açıklama</th>
+                                    <th class="text-center">İmalat Hattında Olan Ürün Sayısı</th>
                                     <th class="text-center">Sipariş Durumu</th>
                                     <th class="text-center">Durum</th>
                                     <th class="text-center">Sipariş Detayı</th>
@@ -52,6 +53,7 @@
                                     <th class="text-center">Personel Adı Soyadı</th>
                                     <th class="text-center">Talep Eden Firma</th>
                                     <th class="text-center">Açıklama</th>
+                                    <th class="text-center">İmalat Hattında Olan Ürün Sayısı</th>
                                     <th class="text-center">Sipariş Durumu</th>
                                     <th class="text-center">Durum</th>
                                     <th class="text-center">Sipariş Detayı</th>
@@ -128,6 +130,11 @@
                     { data: 'personnelName', name: 'personnelName' },
                     { data: 'companyName', name: 'companyName' },
                     { data: 'description', name: 'description' },
+                    { data: 'manufacturingProductsCount', name: 'manufacturingProductsCount',
+                        render: function (data, type, row) {
+                            return `<h5><span class="badge bg-info">${data}</span></h5>`;
+                        }
+                     },
                     {
                         data: 'orderStatus',
                         name: 'orderStatus',
