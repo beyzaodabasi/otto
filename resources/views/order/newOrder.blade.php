@@ -225,7 +225,7 @@
                                         <th class="text-center">Açıklama</th>
                                         <th class="text-center">Grup Kodu</th>
                                         <th class="text-center">Ana Birim</th>
-                                        <th class="text-center">Adet</th>
+                                        <th class="text-center">Miktar</th>
                                         <th class="text-center">İşlem</th>
                                     </tr>
                                 </thead>
@@ -397,49 +397,55 @@
             return;
         }
 
-        const quantity = prompt("Lütfen adet giriniz:", "1");
-        if (quantity !== null && quantity > 0) {
-            let duplicateFound = false;
+        const quantity = prompt("Lütfen miktar giriniz:", "1");
+        if (quantity !== null) {
+            // Virgülü noktaya çevir
+            const normalizedQuantity = quantity.replace(',', '.');
+            const parsedQuantity = parseFloat(normalizedQuantity);
+            
+            if (parsedQuantity > 0) {
+                let duplicateFound = false;
 
-            $("#qr-table-body tr").each(function() {
-                const existingCode = $(this).find("td").eq(2).text().trim();
-                if (existingCode === product.code) {
-                    duplicateFound = true;
-                    const quantityCell = $(this).find("td").eq(6);
-                    const currentQuantity = parseInt(quantityCell.text());
-                    const newQuantity = currentQuantity + parseInt(quantity);
-                    quantityCell.text(newQuantity);
+                $("#qr-table-body tr").each(function() {
+                    const existingCode = $(this).find("td").eq(2).text().trim();
+                    if (existingCode === product.code) {
+                        duplicateFound = true;
+                        const quantityCell = $(this).find("td").eq(6);
+                        const currentQuantity = parseFloat(quantityCell.text().replace(',', '.'));
+                        const newQuantity = currentQuantity + parsedQuantity;
+                        quantityCell.text(newQuantity);
 
-                    const inputIndex = $(this).attr('data-index');
-                    $(`input[name='products[${inputIndex}][quantity]']`).val(newQuantity);
+                        const inputIndex = $(this).attr('data-index');
+                        $(`input[name='products[${inputIndex}][quantity]']`).val(newQuantity);
+                    }
+                });
+
+                if (!duplicateFound) {
+                    const productIndex = $("#qr-table-body tr").length;
+
+                    const newRow = `
+                        <tr data-index="${productIndex}">
+                            <td>${product.specialCodeDescription ?? ""}</td>
+                            <td>${product.type ?? ""}</td>
+                            <td>${product.code ?? ""}</td>
+                            <td>${product.description ?? ""}</td>
+                            <td>${product.groupCode ?? ""}</td>
+                            <td>${product.mainUnit ?? ""}</td>
+                            <td>${parsedQuantity}</td>
+                            <td><button class="btn btn-danger btn-sm remove-product">Sil</button></td>
+                        </tr>
+                    `;
+                    $("#qr-table-body").append(newRow);
+
+                    const hiddenInputs = `
+                        <input type="hidden" name="products[${productIndex}][id]" value="${product.id}">
+                        <input type="hidden" name="products[${productIndex}][quantity]" value="${parsedQuantity}">
+                    `;
+                    $("#form-products").append(hiddenInputs);
                 }
-            });
 
-            if (!duplicateFound) {
-                const productIndex = $("#qr-table-body tr").length;
-
-                const newRow = `
-                    <tr data-index="${productIndex}">
-                        <td>${product.specialCodeDescription ?? ""}</td>
-                        <td>${product.type ?? ""}</td>
-                        <td>${product.code ?? ""}</td>
-                        <td>${product.description ?? ""}</td>
-                        <td>${product.groupCode ?? ""}</td>
-                        <td>${product.mainUnit ?? ""}</td>
-                        <td>${quantity ?? ""}</td>
-                        <td><button class="btn btn-danger btn-sm remove-product">Sil</button></td>
-                    </tr>
-                `;
-                $("#qr-table-body").append(newRow);
-
-                const hiddenInputs = `
-                    <input type="hidden" name="products[${productIndex}][id]" value="${product.id}">
-                    <input type="hidden" name="products[${productIndex}][quantity]" value="${quantity}">
-                `;
-                $("#form-products").append(hiddenInputs);
+                $('#newProductModal').modal('hide');
             }
-
-            $('#newProductModal').modal('hide');
         }
     });
 

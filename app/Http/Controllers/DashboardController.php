@@ -54,16 +54,16 @@ class DashboardController extends Controller
             ->count();
 
         // OrderProduct tablosundan İmalatta olan ürünler
-        $manufacturingCount = OrderProduct::where('status', 'MANUFACTURING')->sum('quantity');
+        $manufacturingCount = (int) OrderProduct::where('status', 'MANUFACTURING')->sum('quantity');
 
         // OrderProduct tablosundan Montajda olan ürünler
-        $assemblyCount = OrderProduct::where('status', 'ASSEMBLY')->sum('quantity');
+        $assemblyCount = (int) OrderProduct::where('status', 'ASSEMBLY')->sum('quantity');
 
         // OrderProduct tablosundan Muhasebede olan ürünler
-        $accountingCount = OrderProduct::where('status', 'ACCOUNTING')->sum('quantity');
+        $accountingCount = (int) OrderProduct::where('status', 'ACCOUNTING')->sum('quantity');
 
         // OrderProduct tablosundan Sevk/Depo'da olan ürünler
-        $shippingCount = OrderProduct::where('status', 'SHIPPING')->sum('quantity');
+        $shippingCount = (int) OrderProduct::where('status', 'SHIPPING')->sum('quantity');
 
         $employees = User::select(['id', 'created_at', 'email', 'name', 'userName', 'userType', 'unit', 'status'])
             ->where('userType', '!=', 'ADMIN')
