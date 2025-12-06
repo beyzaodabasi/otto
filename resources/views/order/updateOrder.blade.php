@@ -234,7 +234,7 @@
                                     <th class="text-center">Açıklama</th>
                                     <th class="text-center">Grup Kodu</th>
                                     <th class="text-center">Ana Birim</th>
-                                    <th class="text-center">Adet</th>
+                                    <th class="text-center">Miktar</th>
                                     <th class="text-center">Durum</th>
                                     <th class="text-center">Durum Güncelle</th>
                                 </tr>
@@ -307,9 +307,10 @@
                                                         <input type="hidden" id="modalCurrentStatus" name="currentStatus" />
                                                         <!-- Adet -->
                                                         <div class="form-group">
-                                                            <label for="modalQuantity">Adet</label>
-                                                            <select id="modalQuantity" class="form-control"
-                                                                name="quantity"></select>
+                                                            <label for="modalQuantity">Miktar</label>
+                                                            <input type="number" id="modalQuantity" class="form-control"
+                                                                name="quantity" step="0.01" min="0.01" required />
+                                                            <small class="form-text text-muted">Maksimum: <span id="maxQuantity"></span></small>
                                                         </div>
                                                         <!-- Durum -->
                                                         <div class="form-group">
@@ -345,7 +346,7 @@
                                     <th class="text-center">Açıklama</th>
                                     <th class="text-center">Grup Kodu</th>
                                     <th class="text-center">Ana Birim</th>
-                                    <th class="text-center">Adet</th>
+                                    <th class="text-center">Miktar</th>
                                     <th class="text-center">Durum</th>
                                     <th class="text-center">Durum Güncelle</th>
                                 </tr>
@@ -413,6 +414,7 @@
                     info: true,
                     autoWidth: false,
                     responsive: true,
+                    buttons: ["excel", "pdf"],
                 })
                 .buttons()
                 .container()
@@ -434,12 +436,11 @@
             modal.find('#modalCode').val(productCode);
             modal.find('#modalCurrentStatus').val(productStatus);
 
-            // Adet seçeneklerini sıfırla ve ekle
-            var quantitySelect = modal.find('#modalQuantity');
-            quantitySelect.empty();
-            for (var i = 1; i <= productQuantity; i++) {
-                quantitySelect.append('<option value="' + i + '">' + i + '</option>');
-            }
+            // Adet input'unu ayarla
+            var quantityInput = modal.find('#modalQuantity');
+            quantityInput.val(productQuantity);
+            quantityInput.attr('max', productQuantity);
+            modal.find('#maxQuantity').text(productQuantity);
 
             // Durum seçeneklerini güncelle
             modal.find('#modalNewStatus').val(productStatus);

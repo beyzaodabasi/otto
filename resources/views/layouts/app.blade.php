@@ -171,6 +171,16 @@
                         </li>
                         @endif
                         @if (Auth::user()->userType == 'ADMIN' || Auth::user()->unit == 'MANAGER')
+                        <li class="nav-header">RAPORLAMA</li>
+                        <li class="nav-item">
+                            <a href="{{ route(name: 'reporting') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'reporting' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-chart-line"></i>
+                                <p>Satış Raporları</p>
+                            </a>
+                        </li>
+                        @endif
+                        @if (Auth::user()->userType == 'ADMIN' || Auth::user()->unit == 'MANAGER')
                         <li class="nav-header">PERSONEL İŞLEMLERİ</li>
                         <li class="nav-item">
                             <a href="{{ route(name: 'employees') }}"

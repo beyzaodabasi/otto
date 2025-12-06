@@ -76,7 +76,7 @@
                                 <th class="text-center">Sipariş Numarası</th>
                                 <th class="text-center">Müşteri Tanımı</th>
                                 <th class="text-center">Aracı Firma</th>
-                                <th class="text-center">Sipariş Adedi</th>
+                                <th class="text-center">Sipariş Miktarı</th>
                                 <th class="text-center">Sipariş Tarihi</th>
                                 <th class="text-center">Termin Tarihi</th>
                                 <th class="text-center">Personel Adı Soyadı</th>
@@ -92,7 +92,7 @@
                                 <th class="text-center">Sipariş Numarası</th>
                                 <th class="text-center">Müşteri Tanımı</th>
                                 <th class="text-center">Aracı Firma</th>
-                                <th class="text-center">Sipariş Adedi</th>
+                                <th class="text-center">Sipariş Miktarı</th>
                                 <th class="text-center">Sipariş Tarihi</th>
                                 <th class="text-center">Termin Tarihi</th>
                                 <th class="text-center">Personel Adı Soyadı</th>

@@ -15,4 +15,8 @@ class OrderProduct extends Model
         'status',
         'quantity'
     ];
+
+    protected $casts = [
+        'quantity' => 'decimal:2'
+    ];
 }

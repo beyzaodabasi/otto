@@ -140,7 +140,7 @@ class OrderController extends Controller
                 foreach (json_decode($order->productDetails) as $product) {
                     $total += $product->quantity;
                 }
-                return $total;
+                return number_format($total, 2, ',', '.');
             })
             ->editColumn('status', fn($order) => $order->status == 'ACTIVE' ? 'Aktif' : 'Pasif')
             ->addColumn('actions', fn($order) => '<a href="' . route('getOrder', ['id' => $order->id]) . '" class="btn btn-primary btn-sm">Detay</a>')
@@ -303,7 +303,7 @@ class OrderController extends Controller
         $request->validate([
             'orderId' => 'required|integer',
             'productId' => 'required|integer',
-            'quantity' => 'required|integer|min:1',
+            'quantity' => 'required|numeric|min:0.01',
             'currentStatus' => 'required|string|in:ORDER,MANUFACTURING,ASSEMBLY,ACCOUNTING,SHIPPING,CANCELLED,COMPLETED',
             'newStatus' => 'required|string|in:ORDER,MANUFACTURING,ASSEMBLY,ACCOUNTING,SHIPPING,CANCELLED,COMPLETED',
         ]);

@@ -12,6 +12,7 @@ use App\Http\Controllers\AccountingController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ManagementController;
+use App\Http\Controllers\ReportingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +83,10 @@ Route::group(['middleware' => 'auth'], function () {
     });
     Route::controller(ManagementController::class)->group(function () {
         Route::get('/management', 'index')->name('management');
+    });
+    Route::controller(ReportingController::class)->group(function () {
+        Route::get('/reporting', 'index')->name('reporting');
+        Route::get('/reporting/data', 'getReportingData')->name('reporting.data');
     });
 });
 Route::group(['middleware' => 'guest'], function () {
