@@ -18,8 +18,7 @@
 
         {{-- Text --}}
         @isset($text)
-            <span class="{{ $makeTextWrapperClass() }}"
-                @isset($textTooltip) title="{{ $textTooltip }}" style="cursor:help;" @endisset>
+            <span class="{{ $makeTextWrapperClass() }}">
                 @if(! empty($url) && $urlTarget === 'text')
                     <a href="{{ $url }}">{{ $text }}</a>
                 @else

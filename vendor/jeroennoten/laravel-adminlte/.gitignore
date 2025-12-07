@@ -1,8 +1,0 @@
-/composer.lock
-/phpunit.xml
-/vendor
-/.idea
-/.phpunit.result.cache
-/node_modules
-/docs/.vitepress/cache
-/docs/.vitepress/dist
