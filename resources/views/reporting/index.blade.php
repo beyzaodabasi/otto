@@ -170,7 +170,7 @@
                 {
                     data: 'main_unit',
                     name: 'main_unit',
-                    searchable: true
+                    searchable: false
                 },
                 {
                     data: 'total_quantity',
